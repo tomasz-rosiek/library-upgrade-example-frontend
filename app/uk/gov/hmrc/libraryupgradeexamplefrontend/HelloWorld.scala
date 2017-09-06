@@ -16,16 +16,18 @@
 
 package uk.gov.hmrc.libraryupgradeexamplefrontend.controllers
 
-import uk.gov.hmrc.play.frontend.controller.FrontendController
-import play.api.mvc._
-import scala.concurrent.Future
+import javax.inject.Inject
+
+import play.api.Configuration
 import play.api.Play.current
 import play.api.i18n.Messages.Implicits._
+import play.api.mvc._
+import uk.gov.hmrc.play.bootstrap.controller.FrontendController
 
+import scala.concurrent.Future
 
-object HelloWorld extends HelloWorld
+class HelloWorld @Inject() (val configuration : Configuration) extends FrontendController {
 
-trait HelloWorld extends FrontendController {
   val helloWorld = Action.async { implicit request =>
 		Future.successful(Ok(uk.gov.hmrc.libraryupgradeexamplefrontend.views.html.helloworld.hello_world()))
   }

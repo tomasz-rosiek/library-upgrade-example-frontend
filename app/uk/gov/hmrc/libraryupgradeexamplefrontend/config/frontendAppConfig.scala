@@ -17,7 +17,6 @@
 package uk.gov.hmrc.libraryupgradeexamplefrontend
 
 import play.api.Play.{configuration, current}
-import uk.gov.hmrc.play.config.ServicesConfig
 
 trait AppConfig {
   val analyticsToken: String
@@ -26,7 +25,7 @@ trait AppConfig {
   val reportAProblemNonJSUrl: String
 }
 
-object FrontendAppConfig extends AppConfig with ServicesConfig {
+object FrontendAppConfig extends AppConfig {
 
   private def loadConfig(key: String) = configuration.getString(key).getOrElse(throw new Exception(s"Missing configuration key: $key"))
 
