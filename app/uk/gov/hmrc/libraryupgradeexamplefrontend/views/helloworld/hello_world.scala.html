@@ -14,7 +14,7 @@
  * limitations under the License.
  *@
 
-@()(implicit request: Request[_], messages: Messages)
+@()(implicit request: Request[_], messages: Messages, appConfig : uk.gov.hmrc.libraryupgradeexamplefrontend.AppConfig)
 
 @uk.gov.hmrc.libraryupgradeexamplefrontend.views.html.main_template(title = "Hello from library-upgrade-example-frontend", bodyClasses = None) {
     <h1>Hello from library-upgrade-example-frontend !</h1>

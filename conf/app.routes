@@ -1,3 +1,4 @@
 # microservice specific routes
 
 GET        /hello-world             @uk.gov.hmrc.libraryupgradeexamplefrontend.controllers.HelloWorld.helloWorld
+GET        /fail                    @uk.gov.hmrc.libraryupgradeexamplefrontend.controllers.HelloWorld.fail

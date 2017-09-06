@@ -14,26 +14,18 @@
  * limitations under the License.
  */
 
-package uk.gov.hmrc.libraryupgradeexamplefrontend.controllers
+package uk.gov.hmrc.libraryupgradeexamplefrontend.config
 
 import javax.inject.Inject
 
 import play.api.Configuration
-import play.api.Play.current
-import play.api.i18n.Messages.Implicits._
-import play.api.mvc._
+import play.api.i18n.MessagesApi
+import play.api.mvc.Request
 import uk.gov.hmrc.libraryupgradeexamplefrontend.WithAppConfig
-import uk.gov.hmrc.play.bootstrap.controller.FrontendController
+import uk.gov.hmrc.play.bootstrap.http.FrontendErrorHandler
 
-import scala.concurrent.Future
+class GlobalErrorHandler @Inject()(val messagesApi: MessagesApi, val configuration: Configuration) extends FrontendErrorHandler with WithAppConfig {
+  override def standardErrorTemplate(pageTitle: String, heading: String, message: String)(implicit request: Request[_]) =
+    uk.gov.hmrc.libraryupgradeexamplefrontend.views.html.error_template(pageTitle, heading, message)
 
-class HelloWorld @Inject() (val configuration : Configuration) extends FrontendController with WithAppConfig {
-
-  val helloWorld = Action.async { implicit request =>
-		Future.successful(Ok(uk.gov.hmrc.libraryupgradeexamplefrontend.views.html.helloworld.hello_world()))
-  }
-
-  val fail = Action { implicit request =>
-    throw new RuntimeException("Expected failure")
-  }
 }
